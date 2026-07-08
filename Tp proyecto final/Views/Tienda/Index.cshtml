@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Tp_proyecto_final.Models.Producto>
+
+@{
+    ViewData["Title"] = "Tienda";
+    string buscar = Context.Request.Query["buscar"];
+}
+
+<section class="container my-5">
+    <div class="row g-5">
+        <!-- Sidebar -->
+        
+            <aside class="col-12 col-lg-3">
+                <form asp-controller="Tienda" asp-action="Index" method="get">
+                    <div class="card shadow-sm border-0 p-4">
+                        <h3 class="h4 mb-3">Buscar</h3>
+                        <input type="text" class="form-control mb-4" placeholder="Item o categoría" name="buscar" value="@ViewBag.buscar">
+                        <button class="btn btn-dark w-100 mb-4" type="submit">Buscar</button>
+                        <h3 class="h4 mb-3">Ordenar por</h3>
+                        <select class="form-select mb-4">
+                            <option> Categoria </option>
+                            <option> Precio </option>
+                            <option> Nombre </option>
+                        </select>
+                        <h3 class="h4 mb-3">Precio</h3>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <input type="number" class="form-control" placeholder="Min">
+                            </div>
+                            <div class="col">
+                                <input type="number" class="form-control" placeholder="Max">
+                            </div>
+                        </div>
+                        <h3 class="h4 mb-3">Filtrar</h3>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="novedades">
+                            <label class="form-check-label" for="novedades">Novedades</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="oferta">
+                            <label class="form-check-label" for="oferta">Oferta</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="especial">
+                            <label class="form-check-label" for="especial">Edición especial</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="favoritos">
+                            <label class="form-check-label" for="favoritos">Favoritos</label>
+                        </div>
+                    </div>
+                </form>
+            </aside>
+
+        <main class="col-12 col-lg-9">
+            <h1 class="display-5 fw-bold mb-4">Productos</h1>
+            <div class="row g-4">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-12 col-md-6">
+                    <div class="card shadow-sm border-0 h-100">
+                        <div class="row g-0 align-items-center">
+                            <div class="col-4">
+                                <a asp-controller="Producto" asp-action="Index" asp-route-id="@item.Id">
+                                    <img src="~/img/multimedia/@item.Imagen" class="img-fluid rounded-start" alt="@item.Nombre">
+                                </a>
+                            </div>
+                            <div class="col-8">
+                                <div class="card-body">
+                                    <h6 class="text-muted">@item.Categoria</h6>
+                                    <h5 class="fw-bold">@item.Nombre</h5>
+                                    <p class="fw-semibold mb-1">$@item.Precio</p>
+                                    <span class="badge bg-danger">Nuevo</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                       }
+            </div>
+        </main>
+    </div>
+</section>

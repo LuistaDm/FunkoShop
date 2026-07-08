@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FunkoShop</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Tp_proyecto_final.styles.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    @{
+        string? nombreUsuario = Context.Session.GetString("UsuarioNombre");
+    }
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+            <div class="container">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index"> <img src="~/img/multimedia/branding/isotype.svg" alt="FunkoShop"height="60"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarFunko"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarFunko">
+                    <ul class="navbar-nav align-items-lg-center gap-lg-3">
+                        <li class="nav-item"><a class="nav-link text-white" asp-controller="Tienda" asp-action="Index">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" asp-controller="Home" asp-action="Nosotros">Nosotros</a></li>
+
+
+                        @if (string.IsNullOrEmpty(nombreUsuario))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-controller="Usuario" asp-action="Login">Iniciar sesión</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-controller="Usuario" asp-action="Registro">Registrarse</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <span class="nav-link text-white">
+                                    Hola @nombreUsuario
+                                </span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-controller="Usuario" asp-action="Logout">Cerrar sesión</a>
+                            </li>
+                        }
+
+                        <li class="nav-item">
+                            <a asp-controller="Carrito" asp-action="Index" class="nav-link position-relative"><img src="~/img/multimedia/icons/cart-icon.svg" alt="Carrito" width="28">
+                                @if (TempData["Contar"] != null)
+                                    {
+                                        <span class="badge bg-danger">
+                                            @TempData["Contar"]
+                                        </span>
+                                    }
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+
+    <footer class="bg-dark text-white py-5 mt-5">
+        <div class="container">
+            <div class="row align-items-center text-center text-lg-start">
+                <div class="col-12 col-lg-4 mb-4 mb-lg-0">
+                    <nav class="d-flex flex-column flex-lg-row gap-3 justify-content-center justify-content-lg-start">
+                        <a class="text-white text-decoration-none" asp-controller="Home" asp-action="Tienda">Shop</a>
+                        <a class="text-white text-decoration-none" asp-controller="Home" asp-action="Index">Nosotros</a>
+                        <a class="text-white text-decoration-none" asp-controller="Home" asp-action="Login">Login</a>
+                    </nav>
+                </div>
+                <div class="col-12 col-lg-4 mb-4 mb-lg-0 text-center">
+                    <p class="mb-0">
+                        Todos los derechos reservados 2026 - Funkoshop
+                    </p>
+                </div>
+                <div class="col-12 col-lg-4 text-center text-lg-end">
+                    <a asp-controller="Home" asp-action="Index">
+                        <img src="~/img/multimedia/branding/isotype.svg" alt="FunkoShop" class="img-fluid" style="max-height: 90px;" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

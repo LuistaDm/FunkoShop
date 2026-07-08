@@ -1,0 +1,51 @@
+﻿@model Tp_proyecto_final.Models.Producto
+@{
+    ViewData["Title"] = "Producto";
+}
+
+<section class="container my-5">
+    <div class="row align-items-center g-5">
+        <div class="col-12 col-lg-6 text-center">
+            <img src="~/img/multimedia/@Model.Imagen" alt="@Model.Nombre" class="img-fluid">
+        </div>
+        <div class="col-12 col-lg-6">
+            <p class="text-muted text-uppercase mb-2">@Model.Categoria</p>
+            <h1 class="display-5 fw-bold">@Model.Nombre</h1>
+            <p class="fs-5 text-secondary">@Model.Descripcion</p>
+            <h3 class="fw-semibold mb-4">@Model.Precio</h3>
+            <div class="d-flex flex-column flex-sm-row gap-3">
+                <input type="number" min="1" placeholder="Cantidad" class="form-control w-auto">
+                <a asp-controller="Carrito" asp-action="Agregar" asp-route-id="@Model.Id" id="btnCarrito" class="btn btn-danger btn-lg"> Agregar al carrito </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1055;">
+    <div id="toastCarrito"
+         class="toast align-items-center text-bg-success border-0"
+         role="alert">
+        <div class="d-flex">
+            <div class="toast-body">
+                Producto agregado al carrito
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast">
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const boton = document.getElementById("btnCarrito");
+        const toastElement = document.getElementById("toastCarrito");
+        const toastBootstrap =
+            new bootstrap.Toast(toastElement);
+        boton.addEventListener("click", function () {
+            toastBootstrap.show();
+        });
+    });
+
+</script>
+

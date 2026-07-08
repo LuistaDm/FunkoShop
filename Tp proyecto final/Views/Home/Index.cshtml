@@ -1,0 +1,142 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+
+<section class="position-relative">
+
+    <img src="~/img/multimedia/funkos-banner.webp" alt="Banner FunkoShop" class="w-100 hero-img">
+    <div class="position-absolute top-50 start-0 translate-middle-y text-white ms-lg-5 ps-lg-5">
+        <h1 class="display-4 fw-bold">
+            Nuevos Ingresos
+        </h1>
+        <p class="fs-4">
+            Descubrí el próximo FunkoPop de tu colección
+        </p>
+        <a asp-controller="Home" asp-action="Tienda" class="btn btn-light btn-lg rounded-pill px-4">Shop</a>
+    </div>
+</section>
+<section class="container my-5">
+
+    <!-- Star Wars -->
+    <div class="row align-items-center mb-5">
+        <div class="col-12 col-lg-7">
+            <img src="~/img/multimedia/star-wars/baby-yoda-1.webp" alt="Grogu Star Wars" class="img-fluid">
+        </div>
+        <div class="col-12 col-lg-5 text-center text-lg-start">
+            <h2 class="fw-bold display-6">
+                Star Wars & The Mandalorian
+            </h2>
+            <p class="fs-5">
+                Disfruta de una saga que sigue agregando personajes a su colección
+            </p>
+            <hr class="d-none d-lg-block border border-danger border-2 w-50">
+
+            <a asp-controller="Home" asp-action="Tienda" class="btn btn-dark btn-lg"> Ver colección</a>
+        </div>
+    </div>
+
+    <!-- Pokemon -->
+    <div class="row align-items-center mb-5">
+
+        <div class="col-12 col-lg-7 order-lg-2">
+            <img src="~/img/multimedia/pokemon/vulpix-1.webp" alt="Pokemon" class="img-fluid">
+        </div>
+
+        <div class="col-12 col-lg-5 text-center text-lg-start order-lg-1">
+            <h2 class="fw-bold display-6">
+                Pokémon
+            </h2>
+            <p class="fs-5">
+                Atrapa a todos los que puedas y disfruta de tu colección
+            </p>
+            <hr class="d-none d-lg-block border border-danger border-2 w-50">
+            <a asp-controller="Home" asp-action="Tienda" class="btn btn-dark btn-lg">Ver colección</a>
+        </div>
+    </div>
+
+    <!-- Harry Potter -->
+    <div class="row align-items-center mb-5">
+
+        <div class="col-12 col-lg-7">
+            <img src="~/img/multimedia/harry-potter/snape-patronus-1.webp" alt="Harry Potter" class="img-fluid">
+        </div>
+
+        <div class="col-12 col-lg-5 text-center text-lg-start">
+
+            <h2 class="fw-bold display-6">
+                Harry Potter
+            </h2>
+            <p class="fs-5">
+                Disfruta de una saga llena de magia
+            </p>
+            <hr class="d-none d-lg-block border border-danger border-2 w-50">
+            <a asp-controller="Home" asp-action="Tienda" class="btn btn-dark btn-lg">Ver colección</a>
+        </div>
+    </div>
+</section>
+
+<section class="container my-5">
+
+    <h2 class="text-center fw-bold display-5 mb-5">
+        Últimos Lanzamientos
+    </h2>
+    <div class="row g-4">
+        <!-- Producto 1 -->
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card border-0 shadow-sm h-100">
+                <a asp-controller="Home" asp-action="Producto"> <img src="~/img/multimedia/star-wars/trooper-1.webp" class="card-img-top img-fluid" alt="Stormtrooper"></a>
+
+                <div class="card-body text-center">
+                    <h6 class="text-muted mb-2">
+                        Star Wars
+                    </h6>
+                    <h5 class="fw-bold">
+                        Stormtrooper Lightsaber
+                    </h5>
+                    <p class="fs-5 fw-semibold">
+                        $1799,99
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Producto 2 -->
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card border-0 shadow-sm h-100">
+                <a asp-controller="Home"asp-action="Producto"><img src="~/img/multimedia/pokemon/pidgeotto-1.webp" class="card-img-top img-fluid" alt="Pidgeotto"></a>
+
+                <div class="card-body text-center">
+                    <h6 class="text-muted mb-2">
+                        Pokémon
+                    </h6>
+                    <h5 class="fw-bold">
+                        Pidgeotto
+                    </h5>
+                    <p class="fs-5 fw-semibold">
+                        $1799,99
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Producto 3 -->
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card border-0 shadow-sm h-100">
+                <a asp-controller="Home" asp-action="Producto"><img src="~/img/multimedia/harry-potter/luna-1.webp" class="card-img-top img-fluid" alt="Luna Lovegood"></a>
+
+                <div class="card-body text-center">
+                    <h6 class="text-muted mb-2">
+                        Harry Potter
+                    </h6>
+                    <h5 class="fw-bold">
+                        Luna Lovegood Lion Mask
+                    </h5>
+                    <p class="fs-5 fw-semibold">
+                        $1799,99
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

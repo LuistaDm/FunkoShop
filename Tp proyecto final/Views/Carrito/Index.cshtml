@@ -1,0 +1,57 @@
+﻿@model List<Tp_proyecto_final.Models.ItemView>
+
+@{
+    ViewData["Title"] = "Carrito";
+
+    decimal total = 0;
+}
+
+<section class="container my-5">
+
+    <h1 class="display-5 fw-bold mb-4">Carrito de Compras</h1>
+
+    @if (Model.Count == 0)
+    {
+        <div class="alert alert-info">
+            Tu carrito está vacío.
+        </div>
+
+        <a asp-controller="Tienda" asp-action="Index" class="btn btn-dark">Volver a la tienda</a>
+    }
+    else
+    {
+        <table class="table table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    decimal subtotal = item.Producto.Precio * item.Cantidad;
+                    total += subtotal;
+                    <tr>
+                        <td>@item.Producto.Nombre</td>
+                        <td>$@item.Producto.Precio</td>
+                        <td>@item.Cantidad</td>
+                        <td>$@subtotal</td>
+                        <td>
+                            <a asp-controller="Carrito" asp-action="Quitar" asp-route-id="@item.Producto.Id" class="btn btn-danger btn-sm">Quitar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="text-end">
+            <h3>Total: $@total</h3>
+        </div>
+
+        <a asp-controller="Carrito" asp-action="FinalizarCompra" class="btn btn-success btn-lg mt-3"> Finalizar compra</a>
+    }
+</section>
